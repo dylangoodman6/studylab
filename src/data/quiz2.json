@@ -1,0 +1,717 @@
+{
+  "chapters": [
+    {
+      "id": "ch3",
+      "title": "Chapter 3 · Methods of Analysis",
+      "hours": 2,
+      "scope": "EE241 Chapter 3 lecture PDF pages 1–21 only (slides 1–42). Stop at the “Methods of Analysis-3” divider; exclude later inspection and method-comparison slides.",
+      "book": "Nilsson/Riedel, §§4.2–4.7, printed pp. 93–104; selected end-of-chapter problems on pp. 130–135."
+    },
+    {
+      "id": "ch4",
+      "title": "Chapter 4 · Circuit Theorems",
+      "hours": 3,
+      "scope": "Linearity, superposition, source transformations, Thévenin, Norton, and maximum power transfer.",
+      "book": "Nilsson/Riedel, §§4.9–4.13, printed pp. 109–124."
+    },
+    {
+      "id": "ch6",
+      "title": "Chapter 6 · Capacitors and Inductors",
+      "hours": 2,
+      "scope": "EE241 Chapter 6 lecture: capacitor and inductor terminal laws, stored energy, DC steady state, and series/parallel equivalents. Mutual inductance is outside these slides.",
+      "book": "Nilsson/Riedel, §§6.1–6.3, printed pp. 176–188."
+    },
+    {
+      "id": "ch7",
+      "title": "Chapter 7 · First-Order RC and RL",
+      "hours": 3,
+      "scope": "Natural and step responses; initial/final values and time constants.",
+      "book": "Nilsson/Riedel, §§7.1–7.4, printed pp. 214–235."
+    },
+    {
+      "id": "ch8",
+      "title": "Chapter 8 · Second-Order RLC",
+      "hours": 4,
+      "scope": "Initial conditions, source-free and step responses, and the three damping cases.",
+      "book": "Nilsson/Riedel, §§8.1–8.4, printed pp. 266–288."
+    }
+  ],
+  "questions": [
+    {
+      "id": "q3-1",
+      "chapter": "ch3",
+      "title": "Two-node KCL",
+      "prompt": "Node a connects to ground through 4 Ω and to node b through 2 Ω. Node b connects to ground through 6 Ω. A 3 A source enters a from ground; a 1 A source leaves b for ground. Write KCL at both nodes and find Va.",
+      "unit": "V",
+      "expression": "6",
+      "answer": 6.0,
+      "answerExact": "6",
+      "formula": "Va/4+(Va−Vb)/2=3; Vb/6+(Vb−Va)/2=−1",
+      "solution": "Solving gives Va=6 V and Vb=3 V. Substitute: 6/4+(6−3)/2=3 A; 3/6+(3−6)/2=−1 A.",
+      "hints": [
+        "Draw the two node voltages.",
+        "Apply KCL separately at a and b.",
+        "Check both source directions before solving."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 2,
+        "bookPrintedPage": 94,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q3-2",
+      "chapter": "ch3",
+      "title": "Supernode with reversed polarity",
+      "prompt": "Node a connects to ground through 4 Ω, node b through 2 Ω, and a 3 A source enters b from ground. A 4 V source has + at b and − at a. Write supernode KCL and the source constraint. Find Va.",
+      "unit": "V",
+      "expression": "4/3",
+      "answer": 1.3333333333333333,
+      "answerExact": "4/3",
+      "formula": "Va/4+Vb/2=3; Vb−Va=4",
+      "solution": "Vb=Va+4. Then Va/4+(Va+4)/2=3, giving Va=4/3 V and Vb=16/3 V.",
+      "hints": [
+        "Enclose the voltage source and both nodes.",
+        "KCL around the supernode has the external resistor and current-source branches.",
+        "The positive terminal is at b: Vb−Va=4 V."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 10,
+        "bookPrintedPage": 96,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q3-3",
+      "chapter": "ch3",
+      "title": "Shared-resistor mesh",
+      "prompt": "A clockwise left mesh contains a 12 V rise and a shared 6 Ω resistor. A clockwise right mesh contains that shared 6 Ω resistor and separate 2 Ω and 4 Ω resistors. Use KVL to find the clockwise left mesh current i1.",
+      "unit": "A",
+      "expression": "4",
+      "answer": 4.0,
+      "answerExact": "4",
+      "formula": "6(i1−i2)=12; 6(i2−i1)+2i2+4i2=0",
+      "solution": "The first loop gives i1−i2=2 A. The second gives i2=i1/2. Thus i1=4 A and i2=2 A.",
+      "hints": [
+        "Draw both clockwise mesh currents.",
+        "Shared-resistor current is i1−i2 in the left mesh.",
+        "Solve 6(i1−i2)=12 and 12i2−6i1=0."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 15,
+        "bookPrintedPage": 101,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q3-4",
+      "chapter": "ch3",
+      "title": "Supermesh constraint",
+      "prompt": "A 12 V source drives the outer perimeter of two clockwise meshes. The outer-left resistance is 2 Ω, the outer-right resistance is 6 Ω, and a 1 A source in their shared branch points with i1 and against i2. Write outer KVL and the source constraint; find i2.",
+      "unit": "A",
+      "expression": "5/4",
+      "answer": 1.25,
+      "answerExact": "5/4",
+      "formula": "2i1+6i2=12; i1−i2=1",
+      "solution": "Substitute i1=i2+1 into 2i1+6i2=12: 8i2=10, so i2=1.25 A and i1=2.25 A.",
+      "hints": [
+        "Bypass the current-source branch in KVL.",
+        "Use the source arrow to form the mesh-current difference.",
+        "2i1+6i2=12 and i1−i2=1."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 19,
+        "bookPrintedPage": 103,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q3-b1",
+      "chapter": "ch3",
+      "title": "Book 4.6 · Single-node voltage",
+      "prompt": "Use nodal analysis. A 24 V source (+ at top) reaches node x through series 20 Ω and 80 Ω resistors. From x to ground are a 25 Ω resistor and a 40 mA current source pointing downward. Write KCL at x and find Vx across the 25 Ω resistor (+ at x).",
+      "unit": "V",
+      "expression": "4",
+      "answer": 4.0,
+      "answerExact": "4",
+      "formula": "(Vx−24)/100+Vx/25+0.04=0",
+      "solution": "The two series resistors carry (Vx−24)/100 A from x. KCL gives (Vx−24)/100+Vx/25+0.04=0, so 5Vx=20 and Vx=4 V. The 25 Ω branch current is 0.16 A downward.",
+      "hints": [
+        "Combine the 20 Ω and 80 Ω series resistors.",
+        "Sum currents leaving node x.",
+        "(Vx−24)/100+Vx/25+0.04=0."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 2,
+        "bookPrintedPage": 130,
+        "bookPdfPage": 154,
+        "bookProblem": "4.6"
+      },
+      "tolerance": 0.005,
+      "origin": "Adapted from Nilsson/Riedel Problem 4.6; circuit values and connections follow the cited problem."
+    },
+    {
+      "id": "q3-b2",
+      "chapter": "ch3",
+      "title": "Book 4.13 · Two-node KCL",
+      "prompt": "Use the bottom wire as ground. A 6 A source injects into node a; 40 Ω joins a to ground. An 8 Ω resistor joins a to b. At b, 80 Ω and 120 Ω each connect to ground, while a 1 A source points from b to ground. Write both KCL equations and find Vb.",
+      "unit": "V",
+      "expression": "96",
+      "answer": 96.0,
+      "answerExact": "96",
+      "formula": "Va/40+(Va−Vb)/8=6; Vb/80+Vb/120+(Vb−Va)/8=−1",
+      "solution": "The two KCL equations give Va=120 V and Vb=96 V. Check at a: 120/40+(120−96)/8=6 A. At b: 96/80+96/120+(96−120)/8=−1 A.",
+      "hints": [
+        "Label the two top nodes a and b.",
+        "Apply KCL with injected source current positive.",
+        "Va/40+(Va−Vb)/8=6; Vb/80+Vb/120+(Vb−Va)/8=−1."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 2,
+        "bookPrintedPage": 131,
+        "bookPdfPage": 155,
+        "bookProblem": "4.13"
+      },
+      "tolerance": 0.005,
+      "origin": "Adapted from Nilsson/Riedel Problem 4.13; circuit values and connections follow the cited problem."
+    },
+    {
+      "id": "q3-b3",
+      "chapter": "ch3",
+      "title": "Book 4.22 · Voltage-source supernode",
+      "prompt": "Use the bottom wire as ground. Node b connects to ground through 50 Ω and a 2 A current source pointing downward. A 25 V source connects b (+) to node c (−). Node c connects to ground through 150 Ω and through series 20 Ω + 55 Ω. Write supernode KCL and the source constraint. Find Vb, measured from b to ground.",
+      "unit": "V",
+      "expression": "-75/2",
+      "answer": -37.5,
+      "answerExact": "-75/2",
+      "formula": "Vb/50+Vc/150+Vc/75+2=0; Vb−Vc=25",
+      "solution": "The outside branches of the supernode give (Vb+Vc)/50=−2 A, so Vb+Vc=−100 V. With Vb−Vc=25 V, Vb=−37.5 V and Vc=−62.5 V. The negative sign follows the declared voltage direction.",
+      "hints": [
+        "Include b and c in one supernode.",
+        "The 25 V source gives Vb−Vc=25.",
+        "Vb/50+Vc/150+Vc/75+2=0; Vb−Vc=25."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 10,
+        "bookPrintedPage": 132,
+        "bookPdfPage": 156,
+        "bookProblem": "4.22"
+      },
+      "tolerance": 0.005,
+      "origin": "Adapted from Nilsson/Riedel Problem 4.22; circuit values and connections follow the cited problem."
+    },
+    {
+      "id": "q3-b4",
+      "chapter": "ch3",
+      "title": "Book 4.32 · Reversed branch current",
+      "prompt": "Use clockwise mesh currents i1 (left) and i2 (right). The left loop has an 80 V source (+ at top), a 75 Ω top resistor and a 125 Ω bottom resistor. The right loop has a 140 V source (+ at top), a 150 Ω top resistor and a 250 Ω bottom resistor. The loops share a 200 Ω vertical resistor. The requested current ic through the 150 Ω resistor points right-to-left, opposite clockwise i2. Write mesh KVL and find ic.",
+      "unit": "A",
+      "expression": "-9/25",
+      "answer": -0.36,
+      "answerExact": "-9/25",
+      "formula": "400i1−200i2=80; −200i1+600i2=140; ic=−i2",
+      "solution": "Mesh KVL gives i1=0.38 A and i2=0.36 A. The requested arrow through 150 Ω points opposite i2, so ic=−0.36 A. The negative value says current actually flows left-to-right.",
+      "hints": [
+        "Draw both clockwise mesh currents.",
+        "The shared 200 Ω drop is 200(i1−i2) in the left loop.",
+        "400i1−200i2=80; −200i1+600i2=140; ic=−i2."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 15,
+        "bookPrintedPage": 134,
+        "bookPdfPage": 158,
+        "bookProblem": "4.32(a)"
+      },
+      "tolerance": 0.005,
+      "origin": "Adapted from Nilsson/Riedel Problem 4.32(a); circuit values and connections follow the cited problem."
+    },
+    {
+      "id": "q3-b5",
+      "chapter": "ch3",
+      "title": "Book 4.49 · Supermesh power",
+      "prompt": "Two clockwise meshes share a 4 A current source pointing downward. The left outer branch has a 100 V source (+ at top), a 6 Ω top resistor and a 9 Ω bottom resistor. The right outer branch has a 25 V source (+ at bottom), a 20 Ω top resistor and a 30 Ω bottom resistor. Use a supermesh and calculate the total power dissipated by the four resistors.",
+      "unit": "W",
+      "expression": "425",
+      "answer": 425.0,
+      "answerExact": "425",
+      "formula": "i1−i2=4; 15i1+50i2=125; P=15i1²+50i2²",
+      "solution": "The shared-source constraint is i1−i2=4 A. Outer KVL is 15i1+50i2=100+25=125 V. Thus i1=5 A and i2=1 A; resistor power is (6+9)5²+(20+30)1²=425 W.",
+      "hints": [
+        "The 4 A source is inside the supermesh.",
+        "Write KVL around the outer perimeter and a separate source-current constraint.",
+        "i1−i2=4; 15i1+50i2=125; P=15i1²+50i2²."
+      ],
+      "source": {
+        "lecture": "ch3",
+        "pdfPage": 19,
+        "bookPrintedPage": 135,
+        "bookPdfPage": 159,
+        "bookProblem": "4.49"
+      },
+      "tolerance": 0.005,
+      "origin": "Adapted from Nilsson/Riedel Problem 4.49; circuit values and connections follow the cited problem."
+    },
+    {
+      "id": "q4-1",
+      "chapter": "ch4",
+      "title": "Superposition at a node",
+      "prompt": "A 6 V source connects to node x through 3 Ω; node x connects to ground through 6 Ω. An independent 1 A source injects current from ground into x. Use superposition to find Vx. Show each source contribution.",
+      "unit": "V",
+      "expression": "6",
+      "answer": 6.0,
+      "answerExact": "6",
+      "formula": "Vx=Vx|6V+Vx|1A=4+2",
+      "solution": "With the 1 A source opened, voltage division gives 6·6/(3+6)=4 V. With the 6 V source shorted, 1 A sees 3||6=2 Ω, giving 2 V. Total Vx=6 V. Direct KCL: (Vx−6)/3+Vx/6=1.",
+      "hints": [
+        "Keep one independent source active at a time.",
+        "Short the ideal voltage source; open the ideal current source.",
+        "Add the two voltage contributions algebraically."
+      ],
+      "source": {
+        "lecture": "ch4",
+        "pdfPage": 3,
+        "bookPrintedPage": 122,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q4-2",
+      "chapter": "ch4",
+      "title": "Source transformation",
+      "prompt": "An ideal 2 A source points upward in parallel with a 5 Ω resistor. Transform it to its Thévenin equivalent. Find the open-circuit voltage at the top terminal relative to the bottom terminal.",
+      "unit": "V",
+      "expression": "10",
+      "answer": 10.0,
+      "answerExact": "10",
+      "formula": "Vth=Is·R",
+      "solution": "Open-circuit current through the parallel resistor is 2 A downward, so Vth=(2 A)(5 Ω)=10 V with the top terminal positive. The equivalent series resistor remains 5 Ω.",
+      "hints": [
+        "Use the current source and its parallel resistor as a pair.",
+        "Vth=IsR.",
+        "Check the voltage polarity from the source arrow."
+      ],
+      "source": {
+        "lecture": "ch4",
+        "pdfPage": 7,
+        "bookPrintedPage": 109,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q4-3",
+      "chapter": "ch4",
+      "title": "Thévenin open-circuit voltage",
+      "prompt": "A 12 V source feeds a 3 kΩ resistor to terminal a. A 6 kΩ resistor connects a to terminal b (ground). With the load removed, find Vth=Vab.",
+      "unit": "V",
+      "expression": "8",
+      "answer": 8.0,
+      "answerExact": "8",
+      "formula": "Vth=12·6/(3+6)",
+      "solution": "The open-circuit terminal voltage is the divider output: 12×6/(3+6)=8 V. With the source set to zero, Rth=3 kΩ||6 kΩ=2 kΩ.",
+      "hints": [
+        "Remove the external load.",
+        "The 3 kΩ and 6 kΩ resistors form a divider.",
+        "Use Vth=Vs·Rbottom/(Rtop+Rbottom)."
+      ],
+      "source": {
+        "lecture": "ch4",
+        "pdfPage": 14,
+        "bookPrintedPage": 113,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q4-4",
+      "chapter": "ch4",
+      "title": "Norton equivalent",
+      "prompt": "A 9 V ideal source in series with 3 Ω appears at terminals a–b, with a positive relative to b. Find the Norton source current from b to a.",
+      "unit": "A",
+      "expression": "3",
+      "answer": 3.0,
+      "answerExact": "3",
+      "formula": "IN=Vth/Rth",
+      "solution": "A 9 V source in series with 3 Ω has short-circuit current 9/3=3 A. The Norton current arrow points b→a, with a 3 Ω parallel resistance.",
+      "hints": [
+        "Short the output terminals conceptually.",
+        "IN=Vth/Rth.",
+        "Check the Norton arrow needed to make a positive at open circuit."
+      ],
+      "source": {
+        "lecture": "ch4",
+        "pdfPage": 22,
+        "bookPrintedPage": 113,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q4-5",
+      "chapter": "ch4",
+      "title": "Maximum power transfer",
+      "prompt": "A network has Vth=8 V and Rth=2 kΩ. Choose the load for maximum power, then calculate that maximum power in mW.",
+      "unit": "mW",
+      "expression": "8",
+      "answer": 8.0,
+      "answerExact": "8",
+      "formula": "RL=Rth; Pmax=Vth²/(4Rth)",
+      "solution": "For a resistive DC load, RL=2 kΩ. Pmax=8²/(4×2000)=0.008 W=8 mW.",
+      "hints": [
+        "Match the load to the Thévenin resistance.",
+        "At the match, the load gets half the Thévenin voltage.",
+        "Pmax=Vth²/(4Rth)."
+      ],
+      "source": {
+        "lecture": "ch4",
+        "pdfPage": 27,
+        "bookPrintedPage": 120,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q6-1",
+      "chapter": "ch6",
+      "title": "Series capacitors and energy",
+      "prompt": "A 6 μF capacitor and a 3 μF capacitor are in series across a 12 V ideal source. Find the total stored energy in μJ after steady state.",
+      "unit": "μJ",
+      "expression": "144",
+      "answer": 144.0,
+      "answerExact": "144",
+      "formula": "Ceq=(6·3)/(6+3)=2 μF; W=½CeqV²",
+      "solution": "Ceq=2 μF. Total stored energy is 0.5×2 μF×(12 V)²=144 μJ. The same charge appears on both series capacitors.",
+      "hints": [
+        "Series capacitors share charge.",
+        "Find Ceq before computing total energy.",
+        "Use W=½CeqV²."
+      ],
+      "source": {
+        "lecture": "ch6",
+        "pdfPage": 15,
+        "bookPrintedPage": 188,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q6-2",
+      "chapter": "ch6",
+      "title": "Capacitor current",
+      "prompt": "A 4 μF capacitor voltage rises linearly at 2 V/ms under passive sign convention. Find its current in mA entering the positive terminal.",
+      "unit": "mA",
+      "expression": "8",
+      "answer": 8.0,
+      "answerExact": "8",
+      "formula": "iC=C·dv/dt",
+      "solution": "dv/dt=2000 V/s. Thus iC=(4×10⁻⁶ F)(2000 V/s)=0.008 A=8 mA.",
+      "hints": [
+        "Use the capacitor terminal equation.",
+        "Convert V/ms into V/s.",
+        "Positive dv/dt gives positive current into the + terminal."
+      ],
+      "source": {
+        "lecture": "ch6",
+        "pdfPage": 5,
+        "bookPrintedPage": 183,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q6-3",
+      "chapter": "ch6",
+      "title": "Inductor voltage",
+      "prompt": "A 50 mH inductor current increases at 4 A/s under passive sign convention. Find the voltage across it in V.",
+      "unit": "V",
+      "expression": "1/5",
+      "answer": 0.2,
+      "answerExact": "1/5",
+      "formula": "vL=L·di/dt",
+      "solution": "L=0.05 H; vL=(0.05 H)(4 A/s)=0.2 V, positive at the current-entry terminal.",
+      "hints": [
+        "Use the inductor terminal equation.",
+        "Convert mH to H.",
+        "The rising current makes vL positive in passive convention."
+      ],
+      "source": {
+        "lecture": "ch6",
+        "pdfPage": 20,
+        "bookPrintedPage": 176,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q6-4",
+      "chapter": "ch6",
+      "title": "Parallel inductors and energy",
+      "prompt": "Two uncoupled inductors of 12 mH and 6 mH are in parallel. Both start with zero current. After a source establishes a total current of 3 A, find their total stored energy in mJ.",
+      "unit": "mJ",
+      "expression": "18",
+      "answer": 18.0,
+      "answerExact": "18",
+      "formula": "Leq=(12·6)/(12+6)=4 mH; W=½LeqI²",
+      "solution": "With zero initial currents, the branch currents divide to 1 A in 12 mH and 2 A in 6 mH. Their energies sum to ½(12 mH)(1 A)²+½(6 mH)(2 A)²=18 mJ. Equivalently Leq=4 mH and W=½Leq(3 A)².",
+      "hints": [
+        "Use the parallel equivalent for uncoupled inductors.",
+        "Leq=4 mH.",
+        "Use W=½LeqI²."
+      ],
+      "source": {
+        "lecture": "ch6",
+        "pdfPage": 27,
+        "bookPrintedPage": 188,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q7-1",
+      "chapter": "ch7",
+      "title": "Natural RC response",
+      "prompt": "A 100 μF capacitor initially holds 12 V. At t=0 it discharges through 10 kΩ. Find its voltage at t=1 s in V.",
+      "unit": "V",
+      "expression": "12/E",
+      "answer": 4.414553294057308,
+      "answerExact": "12*exp(-1)",
+      "formula": "τ=RC=1 s; v(t)=12e^(−t/τ)",
+      "solution": "The time constant is (10,000 Ω)(100 μF)=1 s. v(1)=12e⁻¹≈4.415 V.",
+      "hints": [
+        "Find the initial capacitor voltage.",
+        "Compute τ=RC.",
+        "Use v(t)=V0e^(−t/τ)."
+      ],
+      "source": {
+        "lecture": "ch7",
+        "pdfPage": 3,
+        "bookPrintedPage": 220,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q7-2",
+      "chapter": "ch7",
+      "title": "Natural RL response",
+      "prompt": "An inductor L=200 mH initially carries 2 A and then discharges through R=10 Ω. Find i at t=40 ms in A.",
+      "unit": "A",
+      "expression": "2/E**2",
+      "answer": 0.2706705664732254,
+      "answerExact": "2*exp(-2)",
+      "formula": "τ=L/R=20 ms; i(t)=2e^(−t/τ)",
+      "solution": "τ=0.2/10=0.02 s. At 0.04 s, i=2e⁻²≈0.271 A. Inductor current is continuous at switching.",
+      "hints": [
+        "The initial inductor current continues through t=0.",
+        "Compute τ=L/R.",
+        "40 ms is two time constants."
+      ],
+      "source": {
+        "lecture": "ch7",
+        "pdfPage": 8,
+        "bookPrintedPage": 214,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q7-3",
+      "chapter": "ch7",
+      "title": "RC step response",
+      "prompt": "A 2 kΩ–100 μF RC circuit starts at capacitor voltage 1 V. At t=0 it is connected to a 5 V DC source. Find vC at t=0.2 s in V.",
+      "unit": "V",
+      "expression": "5-4/E",
+      "answer": 3.5284822353142307,
+      "answerExact": "5 - 4*exp(-1)",
+      "formula": "vC(t)=V∞+(V0−V∞)e^(−t/RC)",
+      "solution": "RC=0.2 s, V∞=5 V, and V0=1 V. Thus vC(0.2)=5−4e⁻¹≈3.528 V.",
+      "hints": [
+        "Identify the initial and final capacitor voltages.",
+        "τ=RC=0.2 s.",
+        "Use final + (initial−final)e^(−t/τ)."
+      ],
+      "source": {
+        "lecture": "ch7",
+        "pdfPage": 12,
+        "bookPrintedPage": 224,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q7-4",
+      "chapter": "ch7",
+      "title": "RL step response",
+      "prompt": "A series RL branch has R=6 Ω and L=3 H. The current is 0.5 A at t=0, then a 12 V DC source is applied. Find the current at t=0.5 s in A.",
+      "unit": "A",
+      "expression": "2-3/(2*E)",
+      "answer": 1.4481808382428365,
+      "answerExact": "2 - 3*exp(-1)/2",
+      "formula": "i(t)=I∞+(I0−I∞)e^(−tR/L)",
+      "solution": "I∞=12/6=2 A; τ=L/R=0.5 s. Therefore i(0.5)=2−1.5e⁻¹≈1.448 A.",
+      "hints": [
+        "Find the new DC steady-state current.",
+        "τ=L/R.",
+        "Use final + (initial−final)e^(−t/τ)."
+      ],
+      "source": {
+        "lecture": "ch7",
+        "pdfPage": 16,
+        "bookPrintedPage": 224,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q8-1",
+      "chapter": "ch8",
+      "title": "Series RLC damping",
+      "prompt": "A source-free series RLC circuit has R=4 Ω, L=1 H, and C=0.25 F. Compute α/ω0. Then state in your working whether the circuit is overdamped, critically damped, or underdamped.",
+      "unit": "ratio",
+      "expression": "1",
+      "answer": 1.0,
+      "answerExact": "1",
+      "formula": "α=R/(2L)=2 s⁻¹; ω0=1/√(LC)=2 s⁻¹",
+      "solution": "α/ω0=1, so the circuit is critically damped. Its repeated pole is s=−2 s⁻¹.",
+      "hints": [
+        "Use the series RLC form of α.",
+        "Find ω0 from L and C.",
+        "Compare α with ω0."
+      ],
+      "source": {
+        "lecture": "ch8a",
+        "pdfPage": 6,
+        "bookPrintedPage": 270,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q8-2",
+      "chapter": "ch8",
+      "title": "Parallel RLC damped frequency",
+      "prompt": "A source-free parallel RLC circuit has R=2 Ω, C=0.25 F, and L=1 H. Find its damped angular frequency ωd in rad/s. State the damping case in your working.",
+      "unit": "rad/s",
+      "expression": "sqrt(3)",
+      "answer": 1.7320508075688772,
+      "answerExact": "sqrt(3)",
+      "formula": "α=1/(2RC)=1 s⁻¹; ω0=1/√(LC)=2 s⁻¹; ωd=√(ω0²−α²)",
+      "solution": "Since α=1<2=ω0, the circuit is underdamped and ωd=√3≈1.732 rad/s.",
+      "hints": [
+        "Use the parallel RLC form of α.",
+        "Check α against ω0.",
+        "For underdamping, ωd=√(ω0²−α²)."
+      ],
+      "source": {
+        "lecture": "ch8a",
+        "pdfPage": 14,
+        "bookPrintedPage": 266,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q8-3",
+      "chapter": "ch8",
+      "title": "Critically damped natural current",
+      "prompt": "A source-free series RLC circuit has R=2 Ω, L=1 H, C=1 F, i(0+)=0 A, and di/dt at 0+ equal to 4 A/s. Find i(1 s) in A.",
+      "unit": "A",
+      "expression": "4/E",
+      "answer": 1.4715177646857693,
+      "answerExact": "4*exp(-1)",
+      "formula": "i(t)=(A1+A2t)e^(−αt), α=1 s⁻¹",
+      "solution": "α=R/(2L)=1 and ω0=1, so the response is critical. i(0)=0 gives A1=0; i′(0)=4 gives A2=4 A/s. Thus i(t)=4te⁻ᵗ A and i(1)=4/e≈1.472 A.",
+      "hints": [
+        "Compute α and ω0 first.",
+        "Use the repeated-root response form.",
+        "Apply i(0) and i′(0) to find A1 and A2."
+      ],
+      "source": {
+        "lecture": "ch8a",
+        "pdfPage": 9,
+        "bookPrintedPage": 285,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    },
+    {
+      "id": "q8-4",
+      "chapter": "ch8",
+      "title": "Series RLC step response",
+      "prompt": "A series RLC circuit has R=2 Ω, L=1 H, C=1 F. Its capacitor starts at 0 V and its inductor current at 0 A. A 10 V DC step is applied at t=0. Find vC(1 s) in V.",
+      "unit": "V",
+      "expression": "10*(1-2/E)",
+      "answer": 2.6424111765711538,
+      "answerExact": "10 - 20*exp(-1)",
+      "formula": "vC(t)=10[1−(1+t)e^(−t)] V",
+      "solution": "The circuit is critically damped (α=ω0=1 s⁻¹). The initial value and slope are zero, and the final value is 10 V. Therefore vC(1)=10(1−2/e)≈2.642 V.",
+      "hints": [
+        "Find α, ω0, and the DC final capacitor voltage.",
+        "Use the critical step-response form.",
+        "Apply vC(0)=0 and iC(0)=C vC′(0)=0."
+      ],
+      "source": {
+        "lecture": "ch8b",
+        "pdfPage": 1,
+        "bookPrintedPage": 285,
+        "bookPdfPage": null,
+        "bookProblem": null
+      },
+      "tolerance": 0.005,
+      "origin": "Original StudyLab practice question; the reference covers the concept, not this question."
+    }
+  ]
+}

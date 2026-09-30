@@ -1,0 +1,13 @@
+import type {ErrorType} from '../types';
+
+export type DiagnosticTask={id:string;title:string;question:string;sampleAnswer:string;review:string;type:ErrorType;check:(answer:string)=>boolean};
+const compact=(answer:string)=>answer.toLowerCase().replace(/[\s₁₂₃_{}]/g,c=>({'₁':'1','₂':'2','₃':'3'} as Record<string,string>)[c]||'').replace(/[−–]/g,'-');
+export const diagnostic:DiagnosticTask[]=[
+ {id:'d1',title:'Nodes and connected wire',question:'Two points are connected by an ideal wire with no element between them. How many electrical nodes do they form? Explain briefly.',sampleAnswer:'One node; an ideal wire has the same potential throughout.',review:'Review the definition of an electrical node and equipotential wire.',type:'nodes',check:a=>/\b(one|1|single)\b/i.test(a)},
+ {id:'d2',title:'Current direction and polarity',question:'You assumed current from a to b, but your result is −2 A. State its actual direction and magnitude.',sampleAnswer:'2 A from b to a.',review:'A negative result reverses the chosen reference direction.',type:'direction',check:a=>/2\s*a/i.test(a)&&(/b\s*(to|→|->)\s*a/i.test(a)||/opposite|reverse/i.test(a))},
+ {id:'d3',title:'KCL',question:'A node receives 3 A and 1 A. A single unknown current I leaves it. Write KCL and find I in A.',sampleAnswer:'3 + 1 = I, so I = 4 A.',review:'Apply KCL: total current entering equals total current leaving.',type:'kcl_kvl',check:a=>/4\s*(a\b|ampere)/i.test(a)},
+ {id:'d4',title:'KVL',question:'A loop has a 10 V source and one 4 V drop. Find the other voltage drop in V using KVL.',sampleAnswer:'10 = 4 + V, so V = 6 V.',review:'Apply KVL with a consistent sign convention: rises equal drops.',type:'kcl_kvl',check:a=>/6\s*(v\b|volt)/i.test(a)},
+ {id:'d5',title:'Supernode constraint',question:'A 5 V source lies between nodes a and b. Its positive terminal is at a. Write the voltage constraint.',sampleAnswer:'Va − Vb = 5 V.',review:'Write positive-terminal voltage minus negative-terminal voltage.',type:'supernode',check:a=>/(?:v?a-v?b)=5(?:v)?/i.test(compact(a))},
+ {id:'d6',title:'Supermesh constraint',question:'A 2 A current source is shared by two meshes. Clockwise i1 agrees with its arrow and clockwise i2 opposes it. Write the current constraint.',sampleAnswer:'i1 − i2 = 2 A.',review:'Current through the shared branch is the algebraic difference of mesh currents.',type:'supermesh',check:a=>/i1-i2=2(?:a)?/i.test(compact(a))}
+];
+export const errorLabels:Record<ErrorType,string>={nodes:'Node identification',direction:'Direction and polarity',kcl_kvl:'KCL/KVL signs',supernode:'Supernode constraint',supermesh:'Supermesh constraint',dependent:'Dependent-source control',algebra:'Algebra',units:'Units'};

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "id": "sample-general-course",
+  "subject": {"code": "DEMO101", "name": "Sample Course", "language": "en", "direction": "ltr"},
+  "chapters": [
+    {
+      "id": "chapter-1",
+      "title": "Chapter 1",
+      "learningObjectives": ["Explain the first concept in plain language"],
+      "prerequisites": ["Know the basic vocabulary"],
+      "references": [{"source": "Instructor-approved reference", "pages": [1], "role": "concept scope"}],
+      "errorTypes": ["concept"],
+      "drills": []
+    }
+  ]
+}

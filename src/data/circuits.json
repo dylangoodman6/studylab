@@ -1,0 +1,1370 @@
+[
+  {
+    "id": "n01",
+    "title": "Two current sources and two nodes",
+    "topic": "nodal",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "R3",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 6,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "g",
+        "n2": "a",
+        "value": 3,
+        "unit": "A"
+      },
+      {
+        "id": "I2",
+        "kind": "I",
+        "n1": "b",
+        "n2": "g",
+        "value": 1,
+        "unit": "A"
+      }
+    ],
+    "equations": [
+      "a/4+(a-b)/2=3",
+      "b/6+(b-a)/2=-1"
+    ],
+    "target": {
+      "expr": "a",
+      "unit": "V",
+      "label": "Node voltage a"
+    },
+    "method": "nodal",
+    "reason": "Two unknown node voltages and current sources give direct KCL equations.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 2,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Inspect the currents entering and leaving a and b.",
+      "Write KCL at each node with I=(V1−V2)/R.",
+      "a/4+(a-b)/2=3."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": null,
+    "matrix": null,
+    "reasonAr": "عقدتان مجهولتان مع مصادر تيار؛ KCL يعطي معادلتين مباشرتين.",
+    "hintsAr": [
+      "راقب التيارات الداخلة والخارجة من a و b.",
+      "اكتب KCL لكل عقدة مع I=(V1-V2)/R.",
+      "a/4+(a-b)/2=3."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 6.0,
+        "b": 3.0
+      },
+      "meshCurrents": {},
+      "sourceCurrents": {},
+      "answer": 6.0,
+      "answerExact": "6",
+      "powers": {
+        "R1": 9.0,
+        "R2": 4.5,
+        "R3": 1.5,
+        "I1": -18.0,
+        "I2": 3.0
+      },
+      "powerResidual": 0.0,
+      "meshCount": 3
+    }
+  },
+  {
+    "id": "n02",
+    "title": "Voltage-controlled current source",
+    "topic": "dependent",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R3",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 8,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "g",
+        "n2": "a",
+        "value": 2,
+        "unit": "A"
+      },
+      {
+        "id": "G1",
+        "kind": "G",
+        "n1": "b",
+        "n2": "g",
+        "value": 0.125,
+        "controlPlus": "a",
+        "controlMinus": "g",
+        "unit": "S"
+      }
+    ],
+    "equations": [
+      "a/4+(a-b)/4=2",
+      "b/8+(b-a)/4+a/8=0"
+    ],
+    "target": {
+      "expr": "b",
+      "unit": "V",
+      "label": "Node voltage b"
+    },
+    "method": "nodal",
+    "reason": "The controlling variable is the voltage at a; retain the dependent-source term in KCL.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 2,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Identify the controlling voltage between a and ground.",
+      "The dependent source current from b to g is a/8.",
+      "b/8+(b-a)/4+a/8=0."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": null,
+    "matrix": null,
+    "reasonAr": "متغير التحكم هو جهد a؛ KCL يحافظ على علاقة المصدر التابع.",
+    "hintsAr": [
+      "حدد الجهد المتحكم بين a والمرجع.",
+      "تيار المصدر التابع من b إلى g يساوي a/8.",
+      "b/8+(b-a)/4+a/8=0."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 4.8,
+        "b": 1.6
+      },
+      "meshCurrents": {},
+      "sourceCurrents": {},
+      "answer": 1.6,
+      "answerExact": "8/5",
+      "powers": {
+        "R1": 5.76,
+        "R2": 2.56,
+        "R3": 0.32,
+        "I1": -9.6,
+        "G1": 0.96
+      },
+      "powerResidual": 0.0,
+      "meshCount": 3
+    }
+  },
+  {
+    "id": "n03",
+    "title": "Voltage source between two nodes",
+    "topic": "supernode",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 3,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 6,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "g",
+        "n2": "a",
+        "value": 3,
+        "unit": "A"
+      },
+      {
+        "id": "V1",
+        "kind": "V",
+        "n1": "a",
+        "n2": "b",
+        "value": 6,
+        "unit": "V"
+      }
+    ],
+    "equations": [
+      "a/3+b/6=3",
+      "a-b=6"
+    ],
+    "target": {
+      "expr": "b",
+      "unit": "V",
+      "label": "Node voltage b"
+    },
+    "method": "nodal",
+    "reason": "The voltage source between a and b forms a supernode; add its polarity constraint.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 10,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Enclose both nodes around the voltage source.",
+      "Write KCL for the supernode and a separate voltage constraint.",
+      "a/3+b/6=3; a-b=6."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": null,
+    "matrix": null,
+    "reasonAr": "مصدر الجهد بين a و b يصنع supernode؛ أضف قيد القطبية.",
+    "hintsAr": [
+      "ضم العقدتين حول مصدر الجهد.",
+      "اكتب KCL لسطح العقدة الفائقة ثم فرق الجهد.",
+      "a/3+b/6=3; a-b=6."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 8.0,
+        "b": 2.0
+      },
+      "meshCurrents": {},
+      "sourceCurrents": {
+        "V1": 0.3333333333333333
+      },
+      "answer": 2.0,
+      "answerExact": "2",
+      "powers": {
+        "R1": 21.333333333333332,
+        "R2": 0.6666666666666666,
+        "I1": -24.0,
+        "V1": 2.0
+      },
+      "powerResidual": 0.0,
+      "meshCount": 2
+    }
+  },
+  {
+    "id": "m04",
+    "title": "Two meshes with a shared resistor",
+    "topic": "mesh",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "V1",
+        "kind": "V",
+        "n1": "a",
+        "n2": "g",
+        "value": 12,
+        "unit": "V"
+      },
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R3",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 6,
+        "unit": "Ω"
+      }
+    ],
+    "equations": [
+      "a=12",
+      "(b-a)/2+b/4=0"
+    ],
+    "target": {
+      "expr": "(a-b)/2",
+      "unit": "A",
+      "label": "Current from a to b"
+    },
+    "method": "mesh",
+    "reason": "Two clear meshes and a voltage source make mesh currents direct.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 15,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Draw clockwise currents in both meshes.",
+      "Use KVL; the shared resistor carries the difference of mesh currents.",
+      "6*(i1-i2)=12; 6*(i2-i1)+2*i2+4*i2=0."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": [
+      "6*(i1-i2)=12",
+      "6*(i2-i1)+2*i2+4*i2=0"
+    ],
+    "matrix": null,
+    "reasonAr": "حلقتان واضحتان ومصدر جهد؛ تيارات المشّ تعطي التيار المطلوب مباشرة.",
+    "hintsAr": [
+      "ارسم تيارين دائريين في الحلقتين.",
+      "استخدم KVL، وهبوط المقاومة المشتركة يتبع فرق تياري المشّ.",
+      "6(i1-i2)=12; 6(i2-i1)+2i2+4i2=0."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 12.0,
+        "b": 8.0
+      },
+      "meshCurrents": {
+        "i1": 4.0,
+        "i2": 2.0
+      },
+      "sourceCurrents": {
+        "V1": -4.0
+      },
+      "answer": 2.0,
+      "answerExact": "2",
+      "powers": {
+        "V1": -48.0,
+        "R1": 8.0,
+        "R2": 16.0,
+        "R3": 24.0
+      },
+      "powerResidual": 0.0,
+      "meshCount": 2
+    }
+  },
+  {
+    "id": "m05",
+    "title": "Current source in a shared branch",
+    "topic": "supermesh",
+    "nodes": [
+      "a",
+      "b",
+      "c",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "V1",
+        "kind": "V",
+        "n1": "a",
+        "n2": "g",
+        "value": 12,
+        "unit": "V"
+      },
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "b",
+        "n2": "c",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R3",
+        "kind": "R",
+        "n1": "c",
+        "n2": "g",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "b",
+        "n2": "g",
+        "value": 1,
+        "unit": "A"
+      }
+    ],
+    "equations": [
+      "(b-a)/2+(b-c)/4+1=0",
+      "(c-b)/4+c/2=0",
+      "a=12"
+    ],
+    "target": {
+      "expr": "(b-c)/4",
+      "unit": "A",
+      "label": "Branch current b → c"
+    },
+    "method": "mesh",
+    "reason": "Use a supermesh around the shared current source plus its current constraint.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 19,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Exclude the current-source branch from the outer KVL path.",
+      "The source constraint relates the mesh currents: i1−i2=1 A.",
+      "2*i1+6*i2=12; i1-i2=1."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 110,
+        "b": 320,
+        "c": 530
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": [
+      "2*i1+6*i2=12",
+      "i1-i2=1"
+    ],
+    "matrix": null,
+    "reasonAr": "مصدر التيار بين مشّين؛ اكتب KVL حول supermesh وقيد التيار.",
+    "hintsAr": [
+      "تجاوز فرع مصدر التيار في مسار KVL الخارجي.",
+      "قيد المصدر يربط تياري المشّ: i1-i2=1 A.",
+      "2i1+6i2=12; i1-i2=1."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 12.0,
+        "b": 7.5,
+        "c": 2.5
+      },
+      "meshCurrents": {
+        "i1": 2.25,
+        "i2": 1.25
+      },
+      "sourceCurrents": {
+        "V1": -2.25
+      },
+      "answer": 1.25,
+      "answerExact": "5/4",
+      "powers": {
+        "V1": -27.0,
+        "R1": 10.125,
+        "R2": 6.25,
+        "R3": 3.125,
+        "I1": 7.5
+      },
+      "powerResidual": 0.0,
+      "meshCount": 2
+    }
+  },
+  {
+    "id": "c06",
+    "title": "Choose the shorter method",
+    "topic": "choice",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R3",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "g",
+        "n2": "a",
+        "value": 3,
+        "unit": "A"
+      },
+      {
+        "id": "I2",
+        "kind": "I",
+        "n1": "b",
+        "n2": "g",
+        "value": 1,
+        "unit": "A"
+      }
+    ],
+    "equations": [
+      "a/2+(a-b)/4=3",
+      "b/4+(b-a)/4=-1"
+    ],
+    "target": {
+      "expr": "a",
+      "unit": "V",
+      "label": "Node voltage a"
+    },
+    "method": "nodal",
+    "reason": "There are two unknown node voltages versus three meshes; current sources favor KCL.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 25,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Count unknown node voltages and mesh currents.",
+      "Choose the method with fewer equations that fits the current sources.",
+      "Using nodes: a/2+(a-b)/4=3."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": null,
+    "matrix": null,
+    "reasonAr": "يوجد مجهولا جهد مقابل ثلاثة مشّات، ومصادر التيار تلائم KCL.",
+    "hintsAr": [
+      "احسب عدد جهود العقد المجهولة والمشّات.",
+      "اختر الطريقة ذات معادلات أقل والتي تناسب مصادر التيار.",
+      "عقديًا: a/2+(a-b)/4=3."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 4.0,
+        "b": 0.0
+      },
+      "meshCurrents": {},
+      "sourceCurrents": {},
+      "answer": 4.0,
+      "answerExact": "4",
+      "powers": {
+        "R1": 8.0,
+        "R2": 4.0,
+        "R3": 0.0,
+        "I1": -12.0,
+        "I2": 0.0
+      },
+      "powerResidual": 0.0,
+      "meshCount": 3
+    }
+  },
+  {
+    "id": "m07",
+    "title": "Reversed reference current",
+    "topic": "mesh",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "V1",
+        "kind": "V",
+        "n1": "g",
+        "n2": "a",
+        "value": 9,
+        "unit": "V"
+      },
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 3,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 6,
+        "unit": "Ω"
+      },
+      {
+        "id": "R3",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 9,
+        "unit": "Ω"
+      }
+    ],
+    "equations": [
+      "a=-9",
+      "(b-a)/3+b/6=0"
+    ],
+    "target": {
+      "expr": "(a-b)/3",
+      "unit": "A",
+      "label": "Reference current a → b"
+    },
+    "method": "mesh",
+    "reason": "Two clear meshes favor KVL; the voltage source positive terminal is at g.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 15,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Choose a reference direction and keep it even if the result is negative.",
+      "KVL in the source mesh gives a negative voltage at a.",
+      "9*(i1-i2)=-9; 9*(i2-i1)+3*i2+6*i2=0."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": [
+      "9*(i1-i2)=-9",
+      "9*(i2-i1)+3*i2+6*i2=0"
+    ],
+    "matrix": null,
+    "reasonAr": "مصدر الجهد وحلقتان واضحتان؛ انتبه إلى أن القطب الموجب للمصدر عند g.",
+    "hintsAr": [
+      "افترض اتجاهًا، ولا تغيّره بعد ظهور إشارة سالبة.",
+      "KVL حول الحلقة التي تضم المصدر يعطي جهد a سالبًا.",
+      "9(i1-i2)=-9; 9(i2-i1)+3i2+6i2=0."
+    ],
+    "verified": {
+      "nodes": {
+        "a": -9.0,
+        "b": -6.0
+      },
+      "meshCurrents": {
+        "i1": -2.0,
+        "i2": -1.0
+      },
+      "sourceCurrents": {
+        "V1": -2.0
+      },
+      "answer": -1.0,
+      "answerExact": "-1",
+      "powers": {
+        "V1": -18.0,
+        "R1": 3.0,
+        "R2": 6.0,
+        "R3": 9.0
+      },
+      "powerResidual": 0.0,
+      "meshCount": 2
+    }
+  },
+  {
+    "id": "n08",
+    "title": "Reversed supernode polarity",
+    "topic": "supernode",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "g",
+        "n2": "b",
+        "value": 3,
+        "unit": "A"
+      },
+      {
+        "id": "V1",
+        "kind": "V",
+        "n1": "b",
+        "n2": "a",
+        "value": 4,
+        "unit": "V"
+      }
+    ],
+    "equations": [
+      "a/4+b/2=3",
+      "b-a=4"
+    ],
+    "target": {
+      "expr": "a",
+      "unit": "V",
+      "label": "Node voltage a"
+    },
+    "method": "nodal",
+    "reason": "The source connects two nonreference nodes, with its positive terminal at b.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 10,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Combine a and b into one supernode.",
+      "Apply KCL around it, then write the source constraint using polarity.",
+      "a/4+b/2=3; b-a=4."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": null,
+    "matrix": null,
+    "reasonAr": "مصدر الجهد بين عقدتين غير مرجعيتين؛ قطبه الموجب عند b.",
+    "hintsAr": [
+      "اجمع a و b في عقدة فائقة.",
+      "اكتب KCL على حدودها، ثم قيد المصدر بترتيب القطبية.",
+      "a/4+b/2=3; b-a=4."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 1.3333333333333333,
+        "b": 5.333333333333333
+      },
+      "meshCurrents": {},
+      "sourceCurrents": {
+        "V1": 0.3333333333333333
+      },
+      "answer": 1.3333333333333333,
+      "answerExact": "4/3",
+      "powers": {
+        "R1": 0.4444444444444444,
+        "R2": 14.222222222222221,
+        "I1": -16.0,
+        "V1": 1.3333333333333333
+      },
+      "powerResidual": 0.0,
+      "meshCount": 2
+    }
+  },
+  {
+    "id": "n09",
+    "title": "Dependent source with a known voltage",
+    "topic": "dependent",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "V1",
+        "kind": "V",
+        "n1": "a",
+        "n2": "g",
+        "value": 8,
+        "unit": "V"
+      },
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "G1",
+        "kind": "G",
+        "n1": "b",
+        "n2": "g",
+        "value": 0.125,
+        "controlPlus": "a",
+        "controlMinus": "g",
+        "unit": "S"
+      }
+    ],
+    "equations": [
+      "a=8",
+      "(b-a)/4+b/4+a/8=0"
+    ],
+    "target": {
+      "expr": "(a-b)/4",
+      "unit": "A",
+      "label": "Current from a to b"
+    },
+    "method": "nodal",
+    "reason": "The voltage source fixes a; then use KCL at b with the dependent-source current.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 10,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "The source sets node voltage a directly.",
+      "The controlling voltage is V(a)−V(g).",
+      "a=8; (b-a)/4+b/4+a/8=0."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": null,
+    "matrix": null,
+    "reasonAr": "مصدر الجهد يثبت a مباشرة، ثم KCL عند b مع تيار المصدر التابع.",
+    "hintsAr": [
+      "جهد العقدة a معلوم من مصدر الجهد.",
+      "متغير التحكم للمصدر التابع هو V(a)-V(g).",
+      "a=8; (b-a)/4+b/4+a/8=0."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 8.0,
+        "b": 2.0
+      },
+      "meshCurrents": {},
+      "sourceCurrents": {
+        "V1": -1.5
+      },
+      "answer": 1.5,
+      "answerExact": "3/2",
+      "powers": {
+        "V1": -12.0,
+        "R1": 9.0,
+        "R2": 1.0,
+        "G1": 2.0
+      },
+      "powerResidual": 0.0,
+      "meshCount": 2
+    }
+  },
+  {
+    "id": "n10",
+    "title": "Three-node conductance matrix",
+    "topic": "nodal",
+    "nodes": [
+      "a",
+      "b",
+      "c",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R3",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "R4",
+        "kind": "R",
+        "n1": "b",
+        "n2": "c",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "R5",
+        "kind": "R",
+        "n1": "c",
+        "n2": "g",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "g",
+        "n2": "a",
+        "value": 4,
+        "unit": "A"
+      },
+      {
+        "id": "I2",
+        "kind": "I",
+        "n1": "c",
+        "n2": "g",
+        "value": 1,
+        "unit": "A"
+      }
+    ],
+    "equations": [
+      "a/2+(a-b)/4=4",
+      "(b-a)/4+b/4+(b-c)/2=0",
+      "c/2+(c-b)/2=-1"
+    ],
+    "target": {
+      "expr": "b",
+      "unit": "V",
+      "label": "Node voltage b"
+    },
+    "method": "nodal",
+    "reason": "Three node voltages and current sources lead to a conductance matrix.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 22,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Build one row for each nonreference node.",
+      "Diagonal terms sum connected conductances; off-diagonal terms are negative shared conductances.",
+      "Row b: -a/4+b*(1/4+1/4+1/2)-c/2=0."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 110,
+        "b": 320,
+        "c": 530
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": null,
+    "meshEquations": null,
+    "matrix": "\\begin{bmatrix}3/4&-1/4&0\\\\-1/4&1&-1/2\\\\0&-1/2&1\\end{bmatrix}\\begin{bmatrix}a\\\\b\\\\c\\end{bmatrix}=\\begin{bmatrix}4\\\\0\\\\-1\\end{bmatrix}",
+    "reasonAr": "ثلاثة جهود عقد، ومصادر تيار؛ مصفوفة الموصلية تجمع معاملات KCL.",
+    "hintsAr": [
+      "كوّن صفًا لكل عقدة غير مرجعية.",
+      "القطر مجموع الموصلية، وخارج القطر سالب موصلية الفرع المشترك.",
+      "صف b: -a/4+b(1/4+1/4+1/2)-c/2=0."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 5.75,
+        "b": 1.25,
+        "c": -0.375
+      },
+      "meshCurrents": {},
+      "sourceCurrents": {},
+      "answer": 1.25,
+      "answerExact": "5/4",
+      "powers": {
+        "R1": 16.53125,
+        "R2": 5.0625,
+        "R3": 0.390625,
+        "R4": 1.3203125,
+        "R5": 0.0703125,
+        "I1": -23.0,
+        "I2": -0.375
+      },
+      "powerResidual": 0.0,
+      "meshCount": 4
+    }
+  },
+  {
+    "id": "e11",
+    "title": "Find the wrong supermesh constraint",
+    "topic": "error",
+    "nodes": [
+      "a",
+      "b",
+      "c",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "V1",
+        "kind": "V",
+        "n1": "a",
+        "n2": "g",
+        "value": 10,
+        "unit": "V"
+      },
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "b",
+        "value": 5,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "b",
+        "n2": "c",
+        "value": 5,
+        "unit": "Ω"
+      },
+      {
+        "id": "R3",
+        "kind": "R",
+        "n1": "c",
+        "n2": "g",
+        "value": 5,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "g",
+        "n2": "b",
+        "value": 0.5,
+        "unit": "A"
+      }
+    ],
+    "equations": [
+      "a=10",
+      "(b-a)/5+(b-c)/5-0.5=0",
+      "(c-b)/5+c/5=0"
+    ],
+    "target": {
+      "expr": "c",
+      "unit": "V",
+      "label": "Node voltage c"
+    },
+    "method": "mesh",
+    "reason": "Use outer-loop KVL plus the current-source direction constraint.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 19,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Observe the upward source arrow.",
+      "The upward shared-branch current is i2−i1.",
+      "The correct constraint is i2−i1=0.5 A."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 110,
+        "b": 320,
+        "c": 530
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": {
+      "question": "A worked solution states i1−i2=+0.5 A for two clockwise mesh currents. Identify and correct the mistake.",
+      "options": [],
+      "correct": 1,
+      "type": "supermesh",
+      "explanation": "The shared current source points from g to b. This direction agrees with i2 and opposes i1, so i2−i1=0.5 A.",
+      "explanationAr": "سهم المصدر من g إلى b (صاعد)، وفي الفرع المشترك يوافق i2 ويعاكس i1، لذا i2−i1=0.5 A.",
+      "expected": "i2-i1=0.5"
+    },
+    "meshEquations": [
+      "5*i1+10*i2=10",
+      "i2-i1=0.5"
+    ],
+    "matrix": null,
+    "reasonAr": "مصدر التيار في الفرع المشترك؛ KVL حول المحيط مع قيد اتجاه التيار.",
+    "hintsAr": [
+      "راقب سهم مصدر التيار الصاعد.",
+      "التيار الصاعد في الفرع المشترك يساوي i2-i1.",
+      "القيد الصحيح: i2-i1=0.5 A."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 10.0,
+        "b": 8.333333333333334,
+        "c": 4.166666666666667
+      },
+      "meshCurrents": {
+        "i1": 0.3333333333333333,
+        "i2": 0.8333333333333334
+      },
+      "sourceCurrents": {
+        "V1": -0.3333333333333333
+      },
+      "answer": 4.166666666666667,
+      "answerExact": "25/6",
+      "powers": {
+        "V1": -3.3333333333333335,
+        "R1": 0.5555555555555556,
+        "R2": 3.4722222222222223,
+        "R3": 3.4722222222222223,
+        "I1": -4.166666666666667
+      },
+      "powerResidual": 0.0,
+      "meshCount": 2
+    }
+  },
+  {
+    "id": "e12",
+    "title": "Find the wrong source polarity",
+    "topic": "error",
+    "nodes": [
+      "a",
+      "b",
+      "g"
+    ],
+    "branches": [
+      {
+        "id": "R1",
+        "kind": "R",
+        "n1": "a",
+        "n2": "g",
+        "value": 2,
+        "unit": "Ω"
+      },
+      {
+        "id": "R2",
+        "kind": "R",
+        "n1": "b",
+        "n2": "g",
+        "value": 4,
+        "unit": "Ω"
+      },
+      {
+        "id": "I1",
+        "kind": "I",
+        "n1": "g",
+        "n2": "a",
+        "value": 1,
+        "unit": "A"
+      },
+      {
+        "id": "V1",
+        "kind": "V",
+        "n1": "b",
+        "n2": "a",
+        "value": 3,
+        "unit": "V"
+      }
+    ],
+    "equations": [
+      "a/2+b/4=1",
+      "b-a=3"
+    ],
+    "target": {
+      "expr": "b",
+      "unit": "V",
+      "label": "Node voltage b"
+    },
+    "method": "nodal",
+    "reason": "The source positive terminal is at b, so its constraint must reflect that.",
+    "source": {
+      "course": "EE241",
+      "chapter": "3",
+      "page": 10,
+      "origin": "Original problem based on the lecture topic; not copied from the source"
+    },
+    "hints": [
+      "Read the + terminal in the diagram.",
+      "Source voltage is positive-terminal voltage minus negative-terminal voltage.",
+      "The correct constraint is b−a=3 V."
+    ],
+    "visual": {
+      "layout": "top-bus",
+      "nodePositions": {
+        "a": 180,
+        "b": 460
+      },
+      "topY": 68,
+      "groundBusY": 260
+    },
+    "error": {
+      "question": "A worked solution states a−b=3 V for the supernode. Identify and correct the mistake.",
+      "options": [],
+      "correct": 1,
+      "type": "supernode",
+      "explanation": "The positive source terminal is at b, so b−a=3 V.",
+      "explanationAr": "قطب المصدر الموجب عند b والسالب عند a، لذلك b−a=3 V.",
+      "expected": "b-a=3"
+    },
+    "meshEquations": null,
+    "matrix": null,
+    "reasonAr": "مصدر الجهد بين a و b، والطرف الموجب عند b.",
+    "hintsAr": [
+      "اقرأ موضع + عند المصدر في الرسم.",
+      "قيد الجهد = جهد الموجب − جهد السالب.",
+      "القيد الصحيح: b-a=3 V."
+    ],
+    "verified": {
+      "nodes": {
+        "a": 0.3333333333333333,
+        "b": 3.3333333333333335
+      },
+      "meshCurrents": {},
+      "sourceCurrents": {
+        "V1": -0.8333333333333334
+      },
+      "answer": 3.3333333333333335,
+      "answerExact": "10/3",
+      "powers": {
+        "R1": 0.05555555555555555,
+        "R2": 2.7777777777777777,
+        "I1": -0.3333333333333333,
+        "V1": -2.5
+      },
+      "powerResidual": 0.0,
+      "meshCount": 2
+    }
+  }
+]
