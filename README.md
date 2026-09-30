@@ -62,7 +62,7 @@ The [public GitHub repository](https://github.com/dylangoodman6/studylab) contai
 
 1. The current deployment is a Render Blueprint named `studylab` created from the public repository URL. It runs one Docker web service named `studylab-ee241-ee247` on the Free plan, with `/api/health` as its health check.
 2. Open the [public site](https://studylab-ee241-ee247.onrender.com/) and verify Quiz 2, Chapter practice, and EE247. `/api/health` returns JSON with `"ok": true`; `/source/ch3` returns 404. If you later add a custom domain, set it in the Render service settings.
-3. This public-URL repository connection does not receive automatic GitHub commit deploys. After pushing a change, use **Manual sync** on the `studylab` Blueprint (or **Manual Deploy** on the web service). To enable automatic deploys later, connect the GitHub repository to Render with access limited to this repository.
+3. This public-URL repository connection does not receive automatic GitHub commit deploys. After pushing a code change, choose **Manual Deploy → Deploy latest commit** on the web service. Use **Manual sync** on the `studylab` Blueprint after changing `render.yaml`. To enable automatic deploys later, connect the GitHub repository to Render with access limited to this repository.
 
 The verified banks and local hints work without an AI key. If you want optional AI explanations, set `OPENAI_API_KEY` in Render's service environment; never put the key in GitHub or the Dockerfile. Browser progress is saved on each visitor's device, and export/import JSON moves it between devices. Render's Free web services spin down after 15 minutes of no inbound traffic and take time to wake; choose a paid instance if uninterrupted availability matters.
 
