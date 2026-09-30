@@ -2,6 +2,8 @@
 
 StudyLab is an English-first, bilingual (English/Arabic) circuit-study web app. Questions and written practice remain in English in both interface languages. The interface switches between left-to-right English and right-to-left Arabic. Prepared by Mohammed Al-Quraini, Electrical Engineering student.
 
+**Public site:** https://studylab-ee241-ee247.onrender.com/
+
 ## Run locally
 
 Requires Node.js 24+ and Python 3.11+. From this project directory:
@@ -58,8 +60,9 @@ For optional AI explanations, copy `server/.env.example` to `server/.env` and se
 
 The [public GitHub repository](https://github.com/dylangoodman6/studylab) contains the root [Dockerfile](Dockerfile) and [render.yaml](render.yaml). The Dockerfile builds React and runs the Python/SymPy API in one web service. It reads Render's `PORT`, listens on `0.0.0.0`, and sets `STUDYLAB_PUBLIC=1`. In public mode, every `/source/...` PDF request returns 404. Supplied PDFs, local dependencies, browser progress, and API keys are excluded from Git and the Docker image. GitHub Pages alone does not run the Python API, so deploy the complete app as a web service.
 
-1. In Render, choose **New → Blueprint**, connect `dylangoodman6/studylab`, and select the root `render.yaml`. It defines one public Docker web service on the Free plan with `/api/health` as the health check and automatic redeployment on commits. Render gives the service a public `https://…onrender.com` address after a successful deploy. You can change the plan later in Render.
-2. Open that address and verify Quiz 2, Chapter practice, and EE247. `/api/health` should return JSON with `"ok": true`; `/source/ch3` should return 404. If you later add a custom domain, set it in the Render service settings.
+1. The current deployment is a Render Blueprint named `studylab` created from the public repository URL. It runs one Docker web service named `studylab-ee241-ee247` on the Free plan, with `/api/health` as its health check.
+2. Open the [public site](https://studylab-ee241-ee247.onrender.com/) and verify Quiz 2, Chapter practice, and EE247. `/api/health` returns JSON with `"ok": true`; `/source/ch3` returns 404. If you later add a custom domain, set it in the Render service settings.
+3. This public-URL repository connection does not receive automatic GitHub commit deploys. After pushing a change, use **Manual sync** on the `studylab` Blueprint (or **Manual Deploy** on the web service). To enable automatic deploys later, connect the GitHub repository to Render with access limited to this repository.
 
 The verified banks and local hints work without an AI key. If you want optional AI explanations, set `OPENAI_API_KEY` in Render's service environment; never put the key in GitHub or the Dockerfile. Browser progress is saved on each visitor's device, and export/import JSON moves it between devices. Render's Free web services spin down after 15 minutes of no inbound traffic and take time to wake; choose a paid instance if uninterrupted availability matters.
 
